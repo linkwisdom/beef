@@ -1,0 +1,32 @@
+{
+  "author": {
+    "name": "liandong liu"
+  },
+  "contacts": [
+    "liu@liandong.org"
+  ],
+  "name": "beef",
+  "description": "beef - brwoser end equals framework",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/linkwisdom/beef.git"
+  },
+  "main": "./src/require.js",
+  "keywords": [
+    "requirejs",
+    "require",
+    "AMD",
+    "beef"
+  ],
+  "bin": {
+    "beef": "./bin/beef"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  }
+}
