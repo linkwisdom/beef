@@ -27,8 +27,12 @@ function requireModule(module, relativeId, callback) {
         prefix = chunks[0];
         relativeId = chunks.slice(1).join("!");
     }
+
+    relativeId = require('./config').resolve(relativeId, module);
     
     var fileName = Module._resolveFilename(relativeId, module);
+
+
 
     if (Array.isArray(fileName)) {
         fileName = fileName[0];
@@ -43,5 +47,6 @@ function requireModule(module, relativeId, callback) {
 }
 
 requireModule.brow = require('./brow');
+requireModule.config = require('./config').config;
 
 module.exports = requireModule;
