@@ -1,18 +1,18 @@
 var fs = require('fs');
 
-exports.text = function(filename) {
+exports.text = function (filename) {
     return fs.readFileSync(filename).toString();
 };
 
-exports.file = function(filename) {
+exports.file = function (filename) {
     return fs.readFileSync(filename);
 };
 
-exports.json = function(filename) {
+exports.json = function (filename) {
     return require(filename);
 };
 
-exports.css = function(filename) {
+exports.css = function (filename) {
     var less = require('less');
     var content = fs.readFileSync(filename).toString();
 
@@ -24,4 +24,13 @@ exports.css = function(filename) {
     });
 
     return content;
+};
+
+// 增加对本地module的支持
+exports.module = function (name) {
+    try {
+        return require('paw').require(name);
+    } catch(expt) {
+        console.log('cannot find modules');
+    }
 };

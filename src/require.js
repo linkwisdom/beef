@@ -32,8 +32,6 @@ function requireModule(module, relativeId, callback) {
     
     var fileName = Module._resolveFilename(relativeId, module);
 
-
-
     if (Array.isArray(fileName)) {
         fileName = fileName[0];
     }
@@ -48,5 +46,6 @@ function requireModule(module, relativeId, callback) {
 
 requireModule.brow = require('./brow');
 requireModule.config = require('./config').config;
+requireModule.plugin = plugin;
 
 module.exports = requireModule;

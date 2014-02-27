@@ -28,9 +28,9 @@ function define(id, injects, factory) {
         if (factory) {
 
             // 如果只有两个参数, 
-            if (typeof id === "string") {
+            if (typeof id === 'string') {
                 if (id !== mod.id) {
-                    throw new Error("module id must be consistent");
+                    throw new Error('module id must be consistent');
                 }
                 // default injects
                 injects = [];
