@@ -1,7 +1,7 @@
 beef -- 牛排
 -----------------
 
-> 解决前后端模块化公用；面向前端modules标准化模块，支持前端模块在服务复用
+> 解决前后端模块化共用；面向前端AMDJS模块，支持前端模块在服务端使用；提供模块插件机制；支持自定义路由
 
 > beef means that modules from backend to frontend stay works
 
