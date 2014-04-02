@@ -29,7 +29,28 @@ beef -- 牛排
   };
 
 ```
+### 支持多模块配置 
+- v0.0.7开始
 
+```js
+    // 配置第一次
+    require.config({
+        name: 'source',
+        baseUrl: './source',
+        packages: {
+            'resource': './resource'
+        }
+    });
+
+    // 配置第二次
+    require.config({
+        name: 'admin',
+        baseUrl: './admin',
+        packages: {
+            'public': './public'
+        }
+    });
+```
  
 ## 使用方法
 

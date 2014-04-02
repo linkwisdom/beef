@@ -2,19 +2,20 @@
 var require = require('../src/require');
 
 require.config({
+    name: 'source',
     baseUrl: './source',
     packages: {
         'admin': '../admin'
     }
 });
 
-var mod = require('./mod');
+var mod = require('source/mod');
 
-require(['./amd'], function(amd) {
+require(['source/amd'], function(amd) {
     console.log(amd);
 });
 
-var text = require('text!./text.txt');
+var text = require('text!source/text.txt');
 
 console.log(text);
 
@@ -22,7 +23,5 @@ console.log(text);
 pow = require('admin/pow');
 console.log(pow);
 
-var fcpipe = require('mockservice');
-// var css = require('css!./style.less');
-
-// console.log(css);
+//var css = require('css!source/style.less');
+//console.log(css);

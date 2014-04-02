@@ -45,7 +45,12 @@ function requireModule(module, relativeId, callback) {
 }
 
 requireModule.brow = require('./brow');
-requireModule.config = require('./config').config;
+var configObject = require('./config');
+
+for (var item in configObject) {
+    requireModule[item] = configObject[item];
+}
+
 requireModule.plugin = plugin;
 
 module.exports = requireModule;

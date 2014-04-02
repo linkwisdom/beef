@@ -2,22 +2,43 @@ var path = require('path');
 var root = process.cwd();
 var packages = {};
 
-
 module.exports = {
-    config: function(option) {
-        if (option.baseUrl) {
-            root = path.resolve(root, option.baseUrl)
+    config: function (option) {
+        var baseUrl = option.baseUrl;
+        if (baseUrl) {
+            baseUrl = path.resolve(process.cwd(), baseUrl);
+            root = baseUrl;
+            if (option.name) {
+                packages[option.name] = baseUrl;
+            }
+        } else {
+            baseUrl = root;
         }
 
         if (option.packages) {
-            packages = option.packages;
+            var pkgs = option.packages;
 
-            for (var item in packages) {
-                packages[item] = path.resolve(root, packages[item]);
+            for (var item in pkgs) {
+                if (packages.hasOwnProperty(item)) {
+                    throw Error('packages aready existed');
+                } else {
+                    packages[item] = path.resolve(baseUrl, pkgs[item]);
+                }
             }
         }
     },
-    resolve: function(relativeId, module) {
+    clear: function (pkg) {
+        if (pkg === true) {
+            packages = {};
+            return;
+        }
+        
+        // 单独删除一个包
+        if (pkg && packages.hasOwnProperty(pkg)) {
+            delete packages.pkg;
+        }
+    },
+    resolve: function (relativeId, module) {
         if (relativeId.charAt(0) !== '.') {
             if (relativeId in packages) {
                 return packages[relativeId];
@@ -27,6 +48,8 @@ module.exports = {
                     return relativeId.replace(item, packages[item]);
                 }
             }
+        } else if (module && module.filename) {
+            return path.resolve(module.filename, '../' + relativeId);
         } else {
             return path.resolve(root, relativeId);
         }
